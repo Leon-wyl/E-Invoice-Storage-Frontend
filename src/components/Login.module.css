@@ -1,0 +1,52 @@
+.bg {
+  background: white;
+  margin: auto;
+  padding: 50px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+	flex-flow: column;
+	border-radius: 20px;
+}
+
+.login_card {
+  width: 520px;
+  height: 450px;
+  background: #f2f3f7;
+  border-radius: 20px;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  padding: 51px 60px;
+}
+
+.login-button {
+  width: 400px;
+  height: 56px;
+  background: #6c5dd3;
+  border-radius: 12px;
+}
+
+.heard {
+  position: absolute;
+  display: flex;
+  top: 264px;
+}
+.title {
+  font-size: 14px;
+	padding: 20px;
+  font-family: Arial;
+  font-weight: bold;
+  color: #151830;
+}
+/* .cloud {
+  width: 100px;
+  height: 72px;
+  line-height: 72px;
+  background-image: url("../../../../public/img/cloud.png");
+} */
+/* .cloud img {
+  width: 40px;
+  height: 40px;
+} */
