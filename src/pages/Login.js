@@ -1,15 +1,22 @@
 import { Form, Input, Button} from 'antd';
 import 'antd/dist/antd.css';
 import styles from './Login.module.css';
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
-  const onFinish = (values) => {
-    console.log('Success:', values);
+	let navigate = useNavigate();
+
+  const onFinish = () => {
+    navigate("/invoicepage");
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+	const onClickRegister = () => {
+		navigate("/register")
+	}
 
   return (
 		<div className={styles.bg}>
@@ -42,7 +49,7 @@ const Login = () => {
 					</Form.Item>
 
 					<Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-						<a>No account? Register!</a>
+						<a onClick={onClickRegister}>No account? Register!</a>
 					</Form.Item>
 
 					<Form.Item wrapperCol={{ offset: 8, span: 16 }}>

@@ -1,11 +1,15 @@
 import { Form, Input, Button} from 'antd';
 import 'antd/dist/antd.css';
 import '../App.css'
-import styles from '../components/Login.module.css';
+import styles from './Login.module.css';
+import { useNavigate } from 'react-router';
 
 const Register = () => {
+
+	let navigate = useNavigate();
+
   const onFinish = (values) => {
-    console.log('Success:', values);
+		navigate("/invoicepage");
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -13,11 +17,12 @@ const Register = () => {
   };
 
   return (
-		<div className="App">
-			<header className="App-header">
-				<div className={styles.bg}>
+		// <div className="App">
+		// 	<header className="App-header">
+			<div className={styles.bg}>
+				<div>
 					<div className={styles.title}>
-						<h1>E-Invoice System Registeration</h1>
+						<h1>E-Invoice System Register</h1>
 					</div>
 						<Form
 							name="basic"
@@ -51,7 +56,7 @@ const Register = () => {
 							</Form.Item>
 						</Form>
 					</div>
-				</header>
+			{/* // 	</header> */}
 			</div>
   );
 };
