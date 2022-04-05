@@ -1,15 +1,52 @@
-import { Form, Input, Button} from 'antd';
+import { Form, Input, Button, Modal} from 'antd';
 import 'antd/dist/antd.css';
 import '../App.css'
 import styles from './Login.module.css';
 import { useNavigate } from 'react-router';
+import axios from "axios";
 
 const Register = () => {
-
 	let navigate = useNavigate();
 
-  const onFinish = (values) => {
-		navigate("/invoicepage");
+  const onFinish = async (values) => {
+
+		const response = await axios({
+			method: 'post',
+			url: 'https://invoice-storage.herokuapp.com/register',
+			headers: {}, 
+			data: {
+				name: values.name,
+				username: values.username,
+				password: values.password,
+			}
+		}).catch(error => {
+			if (error.response) {
+				// The request was made and the server responded with a status code
+				// that falls out of the range of 2xx
+				Modal.error({
+					title: "Register Error",
+					content: error.response.data
+				});
+				console.log(error.response.data);
+				console.log(error.response.status);
+				console.log(error.response.headers);
+			} else if (error.request) {
+				Modal.error({
+					title: "Register Error",
+					content: error.request
+				});
+				console.log(error.request);
+			} else {
+				Modal.error({
+					title: "Register Error",
+					content: error.message
+				});
+				console.log('Error', error.message);
+			}
+			return Promise.reject(error);
+		});
+
+	 	navigate("/invoicepage");
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -33,6 +70,14 @@ const Register = () => {
 							onFinishFailed={onFinishFailed}
 							autoComplete="off"
 						>
+							<Form.Item
+								label="Name"
+								name="name"
+								rules={[{ required: true, message: 'Please input your name!' }]}
+							>
+								<Input />
+							</Form.Item>
+
 							<Form.Item
 								label="Username"
 								name="username"
