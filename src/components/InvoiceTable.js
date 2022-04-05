@@ -2,6 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Table, Space, Modal, Button } from "antd";
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import fake_data from '../mock/fake_invoice_data'
 
 const { confirm } = Modal;
 
@@ -23,30 +24,7 @@ const showDeleteConfirm =(id) => () => {
   });
 }
 
-const data = [
-  // {
-  //   key: "1",
-  //   invoiceId: "EBWASP1002",
-  //   date: "2022-02-07",
-  //   supplierName: "Ebusiness Software Services Pty Ltd",
-  //   supplierCountry: "AU",
-  //   customerName: "Awolako Enterprises Pty Ltd",
-  //   customerCountry: "AU",
-  //   taxableAmount: 100,
-  //   taxAmount: 10,
-  // },
-  // {
-  //   key: "2",
-  //   invoiceId: "EBWASP1002",
-  //   date: "2022-02-07",
-  //   supplierName: "Ebusiness Software Services Pty Ltd",
-  //   supplierCountry: "AU",
-  //   customerName: "Awolako Enterprises Pty Ltd",
-  //   customerCountry: "AU",
-  //   taxableAmount: 100,
-  //   taxAmount: 10,
-  // },
-];
+const data = fake_data;
 
 const InvoiceTable = () => {
   const columns = [
