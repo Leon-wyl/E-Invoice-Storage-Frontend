@@ -24,13 +24,15 @@ const showDeleteConfirm =(id) => () => {
   });
 }
 
-const data = fake_data;
 
-const InvoiceTable = () => {
+
+const InvoiceTable = (props) => {
+	const data = props.data;
+
   const columns = [
     {
       title: "Invoice ID",
-      dataIndex: "invoiceId",
+      dataIndex: "id",
       key: "invoiceId",
     },
     {
@@ -40,7 +42,7 @@ const InvoiceTable = () => {
     },
     {
       title: "Supplier",
-      dataIndex: "supplierName",
+      dataIndex: "supplier",
       key: "supplierName",
     },
     {
@@ -50,8 +52,8 @@ const InvoiceTable = () => {
     },
     {
       title: "Customer",
-      key: "customerName",
-      dataIndex: "customerName",
+      key: "customer",
+      dataIndex: "customer",
     },
     {
       title: "Customer Country",
