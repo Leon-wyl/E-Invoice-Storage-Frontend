@@ -78,8 +78,8 @@ const Login = () => {
         </Form.Item>
 
         <Form.Item
-          name="remember"
-          valuePropName="checked"
+          name="register"
+          valuePropName="register"
           wrapperCol={{ offset: 8, span: 16 }}
         >
           <a onClick={onClickRegister}>No account? Register!</a>

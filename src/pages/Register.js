@@ -52,6 +52,10 @@ const Register = () => {
     console.log("Failed:", errorInfo);
   };
 
+  const onClickLogin = () => {
+    navigate("/login");
+  };
+
   return (
     // <div className="App">
     // 	<header className="App-header">
@@ -92,6 +96,14 @@ const Register = () => {
           >
             <Input.Password />
           </Form.Item>
+
+					<Form.Item
+          name="login"
+          valuePropName="login"
+          wrapperCol={{ offset: 8, span: 16 }}
+        	>
+          	<a onClick={onClickLogin}>Has an account? Go back to Login!</a>
+        	</Form.Item>
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button
