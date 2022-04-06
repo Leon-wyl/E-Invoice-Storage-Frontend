@@ -3,25 +3,9 @@ import "antd/dist/antd.css";
 import { Table, Space, Modal, Button } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
+import {deleteExistedData} from "../pages/api";
 
 const { confirm } = Modal;
-
-const showDeleteConfirm = (id) => () => {
-  confirm({
-    title: "Do you Want to delete this e-invoice?",
-    icon: <ExclamationCircleOutlined />,
-    content: "Invoice ID: " + id,
-    okText: "Yes",
-    okType: "danger",
-    cancelText: "No",
-    onOk() {
-      console.log("OK");
-    },
-    onCancel() {
-      console.log("Cancel");
-    },
-  });
-};
 
 const downloadInvoice = (id) => () => {
   axios
@@ -46,8 +30,30 @@ const downloadInvoice = (id) => () => {
 };
 
 const InvoiceTable = (props) => {
-  const data = props.data;
+  const { data, setNeedToLoad} = props;
   console.log(data);
+
+	const showDeleteConfirm = (id) => () => {
+		confirm({
+			title: "Do you Want to delete this e-invoice?",
+			icon: <ExclamationCircleOutlined />,
+			content: "Invoice ID: " + id,
+			okText: "Yes",
+			okType: "danger",
+			cancelText: "No",
+			onOk() {
+				const deleteData = async (id) => {
+					await deleteExistedData(id);
+					setNeedToLoad(true);
+				}
+				deleteData(id);
+			},
+			onCancel() {
+				console.log("Cancel");
+			},
+		});
+	};
+
   const columns = [
     {
       title: "Invoice ID",
@@ -94,7 +100,7 @@ const InvoiceTable = (props) => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button>View</Button>
+          <Button>Send</Button>
           <Button onClick={downloadInvoice(record.id)}>Download</Button>
           <Button onClick={showDeleteConfirm(record.id)}>Delete</Button>
         </Space>

@@ -26,7 +26,7 @@ const InvoicePage = () => {
         <TopBar setNeedToLoad={setNeedToLoad}/>
       </div>
       <Card>
-        {invoiceData.length !== 0 && <InvoiceTable data={invoiceData} />}
+        {invoiceData.length !== 0 && <InvoiceTable data={invoiceData}  setNeedToLoad={setNeedToLoad} />}
       </Card>
     </div>
   );
