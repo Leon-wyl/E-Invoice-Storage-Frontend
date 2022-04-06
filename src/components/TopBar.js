@@ -4,12 +4,13 @@ import FilterButton from './FilterButton';
 import SearchBar from './SearchBar';
 import AddNewInvoiceButton from './AddNewInvoiceButton';
 
-const TopBar = () => {
+const TopBar = (props) => {
+	const {setNeedToLoad} = props;
 	return (
 		<Space wrap>
 			<FilterButton />
 			<SearchBar />
-			<AddNewInvoiceButton />
+			<AddNewInvoiceButton setNeedToLoad={setNeedToLoad}/>
 		</Space>
 	);
 }

@@ -1,37 +1,58 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Table, Space, Modal, Button } from "antd";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import fake_data from '../mock/fake_invoice_data'
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 const { confirm } = Modal;
 
-const showDeleteConfirm =(id) => () => {
-	console.log(id)
+const showDeleteConfirm = (id) => () => {
   confirm({
-    title: 'Do you Want to delete this e-invoice?',
+    title: "Do you Want to delete this e-invoice?",
     icon: <ExclamationCircleOutlined />,
-    content: 'Invoice ID: ' + id,
-    okText: 'Yes',
-    okType: 'danger',
-    cancelText: 'No',
+    content: "Invoice ID: " + id,
+    okText: "Yes",
+    okType: "danger",
+    cancelText: "No",
     onOk() {
-      console.log('OK');
+      console.log("OK");
     },
     onCancel() {
-      console.log('Cancel');
+      console.log("Cancel");
     },
   });
-}
+};
 
-const data = fake_data;
+const downloadInvoice = (id) => () => {
+  axios
+    .get("http://127.0.0.1:5000/download/v2", {
+      params: { invoiceId: id },
+    })
+    .then((res) => {
+      if (!res) {
+        return;
+      }
+			let url = window.URL.createObjectURL(new Blob([res.data],
+        {type: 'text/xml'}))
+      let a = document.createElement('a')
+      a.href= url
+      let content = id
+      a.setAttribute('download', content)
+      document.body.appendChild(a)
+      a.click()
+      URL.revokeObjectURL(a.href)
+      document.body.removeChild(a)
+    });
+};
 
-const InvoiceTable = () => {
+const InvoiceTable = (props) => {
+  const data = props.data;
+  console.log(data);
   const columns = [
     {
       title: "Invoice ID",
-      dataIndex: "invoiceId",
-      key: "invoiceId",
+      dataIndex: "id",
+      key: "id",
     },
     {
       title: "Issue Date",
@@ -40,8 +61,8 @@ const InvoiceTable = () => {
     },
     {
       title: "Supplier",
-      dataIndex: "supplierName",
-      key: "supplierName",
+      dataIndex: "supplier",
+      key: "supplier",
     },
     {
       title: "Supplier Country",
@@ -50,8 +71,8 @@ const InvoiceTable = () => {
     },
     {
       title: "Customer",
-      key: "customerName",
-      dataIndex: "customerName",
+      key: "customer",
+      dataIndex: "customer",
     },
     {
       title: "Customer Country",
@@ -74,16 +95,13 @@ const InvoiceTable = () => {
       render: (text, record) => (
         <Space size="middle">
           <Button>View</Button>
-          <Button>Download</Button>
-          <Button onClick={showDeleteConfirm(record.invoiceId)}>Delete</Button>
+          <Button onClick={downloadInvoice(record.id)}>Download</Button>
+          <Button onClick={showDeleteConfirm(record.id)}>Delete</Button>
         </Space>
       ),
     },
   ];
-
-  return (
-    <Table columns={columns} dataSource={data} />
-  );
+  return <Table columns={columns} dataSource={data} />;
 };
 
 export default InvoiceTable;
