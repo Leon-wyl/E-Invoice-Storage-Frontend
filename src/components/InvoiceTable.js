@@ -2,7 +2,6 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Table, Space, Modal, Button } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import fake_data from "../mock/fake_invoice_data";
 import axios from "axios";
 
 const { confirm } = Modal;
@@ -102,7 +101,6 @@ const InvoiceTable = (props) => {
       ),
     },
   ];
-
   return <Table columns={columns} dataSource={data} />;
 };
 
