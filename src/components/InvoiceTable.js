@@ -9,7 +9,7 @@ const { confirm } = Modal;
 
 const downloadInvoice = (id) => () => {
   axios
-    .get("http://127.0.0.1:5000/download/v2", {
+    .get("https://invoice-storage.herokuapp.com/download/v2", {
       params: { invoiceId: id },
     })
     .then((res) => {

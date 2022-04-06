@@ -10,7 +10,7 @@ const Login = () => {
   const onFinish = async (values) => {
     const response = await axios({
       method: "post",
-      url: "http://127.0.0.1:5000/login",
+      url: "https://invoice-storage.herokuapp.com/login",
       headers: {},
       data: {
         username: values.username,
