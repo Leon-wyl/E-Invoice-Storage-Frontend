@@ -12,10 +12,7 @@ const InvoicePage = () => {
 			const response = await axios({
 				method: "get",
 				url: "http://127.0.0.1:5000/list_all",
-				headers: {},
-				data: {},
 			});
-			console.log(response.data);
 			setInvoiceData(response.data)
 		};
 		getInvoiceData();

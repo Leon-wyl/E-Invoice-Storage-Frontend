@@ -11,7 +11,7 @@ const Register = () => {
   const onFinish = async (values) => {
     const response = await axios({
       method: "post",
-      url: "https://invoice-storage.herokuapp.com/register",
+      url: "http://127.0.0.1:5000/register",
       headers: {},
       data: {
         name: values.name,
@@ -26,21 +26,16 @@ const Register = () => {
           title: "Register Error",
           content: error.response.data,
         });
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
       } else if (error.request) {
         Modal.error({
           title: "Register Error",
           content: error.request,
         });
-        console.log(error.request);
       } else {
         Modal.error({
           title: "Register Error",
           content: error.message,
         });
-        console.log("Error", error.message);
       }
       return Promise.reject(error);
     });
