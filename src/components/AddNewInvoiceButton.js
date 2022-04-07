@@ -7,7 +7,7 @@ const AddNewInvoiceButton = (props) => {
 	const {setNeedToLoad} = props;
 	const UploadProps = {
 		name: 'file',
-		action: 'http://127.0.0.1:5000/upload/v2',
+		action: 'https://invoice-storage.herokuapp.com/upload/v2',
 		headers: {
 			authorization: 'authorization-text',
 		},
