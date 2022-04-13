@@ -4,41 +4,63 @@ import { useState } from 'react';
 import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-const FilterButton = () => {
-	const [filterName, setFilterName] = useState('Filter')
+const FilterButton = (props) => {
+	const [filterPresentName, setFilterPresentName] = useState('Filter')
+	const { filter, setFilter } = props;
 	const handleButtonClick = (e) => {
 		message.info(e);
 		console.log('click left button', e);
 	}
 	
 	const handleMenuClick = (e) => {
-		setFilterName(e.key)
+		if (e.key === "Invoice Id") {
+			setFilter("id");
+		} else if (e.key === "Issue Date") {
+			setFilter("date");
+		} else if (e.key === "Supplier") {
+			setFilter("supplier");
+		} else if (e.key === "Supplier Country") {
+			setFilter("supplierCountry");
+		} else if (e.key === "Customer") {
+			setFilter("customer");
+		} else if (e.key === "Customer Country") {
+			setFilter("customerCountry");
+		} else {
+			setFilter("filter")
+		}
+		setFilterPresentName(e.key);
 	}
 	
 	const menu = (
 		<Menu>
-			{filterName !== 'Filter' && 
+			{filter !== 'filter' && 
 			<Menu.Item key="Filter" onClick={handleMenuClick}>
 				Filter
 			</Menu.Item>}
+			{filter !== 'id' &&
 			<Menu.Item key="Invoice Id" onClick={handleMenuClick}>
 				Invoice Id
-			</Menu.Item>
+			</Menu.Item>}
+			{filter !== 'date' &&
 			<Menu.Item key="Issue Date" onClick={handleMenuClick}>
-				Issue Date (YYYY-MM-DD)
-			</Menu.Item>
+				Issue Date
+			</Menu.Item>}
+			{filter !== 'supplier' &&
 			<Menu.Item key="Supplier" onClick={handleMenuClick}>
 				Supplier
-			</Menu.Item>
+			</Menu.Item>}
+			{filter !== 'supplierCountry' &&
 			<Menu.Item key="Supplier Country" onClick={handleMenuClick}>
 				Supplier Country
-			</Menu.Item>
+			</Menu.Item>}
+			{filter !== 'customer' &&
 			<Menu.Item key="Customer" onClick={handleMenuClick}>
 				Customer
-			</Menu.Item>
+			</Menu.Item>}
+			{filter !== 'customerCountry' &&
 			<Menu.Item key="Customer Country" onClick={handleMenuClick}>
 				Customer Country
-			</Menu.Item>
+			</Menu.Item>}
 		</Menu>
 	);
 	return (
@@ -65,7 +87,7 @@ const FilterButton = () => {
 			</Dropdown.Button> */}
 			<Dropdown overlay={menu}>
 				<Button size="large">
-					{filterName} <DownOutlined />
+					{filterPresentName} <DownOutlined />
 				</Button>
 			</Dropdown>
 		</div>

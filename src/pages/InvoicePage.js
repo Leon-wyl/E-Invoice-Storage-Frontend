@@ -23,7 +23,7 @@ const InvoicePage = () => {
   return (
     <div className={styles.bg}>
       <div className={styles.card}>
-        <TopBar setNeedToLoad={setNeedToLoad}/>
+        <TopBar setNeedToLoad={setNeedToLoad} setInvoiceData={setInvoiceData}/>
       </div>
       <Card>
         {invoiceData.length !== 0 && <InvoiceTable data={invoiceData}  setNeedToLoad={setNeedToLoad} />}
