@@ -7,10 +7,6 @@ import { DownOutlined } from '@ant-design/icons';
 const FilterButton = (props) => {
 	const [filterPresentName, setFilterPresentName] = useState('Filter')
 	const { filter, setFilter } = props;
-	const handleButtonClick = (e) => {
-		message.info(e);
-		console.log('click left button', e);
-	}
 	
 	const handleMenuClick = (e) => {
 		if (e.key === "Invoice Id") {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import { getInvoiceDataByFilter } from "../pages/api";
+import { getInvoiceData } from "../pages/api";
 import { Input, Space, DatePicker } from "antd";
 
 const SearchBar = (props) => {
@@ -9,30 +9,16 @@ const SearchBar = (props) => {
   const { Search } = Input;
   const [filterValue, setFilterValue] = useState("");
 
-  const onChange = (e) => {
-    setFilterValue(e.target.value);
+  const fetchDataByFilter = async (filter, value) => {
+    const data = await getInvoiceData(filter, value);
+    setInvoiceData(data);
   };
 
-	const onChangeDate = (date, dateString) => {
-		setFilterValue(dateString);
-	}
-
   useEffect(() => {
-    const onSearch = (filter, filterValue) => {
-      const fetchDataByFilter = async (filter, value) => {
-        if (filter === "filter" || value === "") {
-          console.log(typeof setNeedToLoad);
-          setNeedToLoad(true);
-        } else {
-          const data = await getInvoiceDataByFilter(filter, value);
-          setInvoiceData(data);
-        }
-      };
-      fetchDataByFilter(filter, filterValue);
-    };
+    //fetchDataByFilter(filter, filterValue);
 
     const timeoutId = setTimeout(() => {
-      onSearch(filter, filterValue);
+      fetchDataByFilter(filter, filterValue);
     }, 500);
 
     // This returned function will invoke before the next call of of this useEffect hook
@@ -43,16 +29,20 @@ const SearchBar = (props) => {
 
   return (
     <Space direction="vertical">
-      {filter !== "date" && 
-			<Input
-        placeholder="input search text"
-        allowClear
-        enterButton="Search"
-        size="large"
-        onChange={onChange}
-      />}
-			{filter === "date" &&
-			<DatePicker onChange={onChangeDate}/>}
+      {filter !== "date" && (
+        <Input
+          placeholder="input search text"
+          allowClear
+          enterButton="Search"
+          size="large"
+          onChange={(e) => setFilterValue(e.target.value)}
+        />
+      )}
+      {filter === "date" && (
+        <DatePicker
+          onChange={(date, dateString) => setFilterValue(dateString)}
+        />
+      )}
     </Space>
   );
 };
