@@ -17,6 +17,16 @@ export const getInvoiceData = async (
   }
 };
 
+export const sendInvoiceData = async (invoiceId) => {
+  try {
+    const res = await getAxios("http://127.0.0.1:5000/send", {
+      params: { invoiceId: invoiceId },
+    });
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const postCreateInvoiceData = async () => {
   try {
