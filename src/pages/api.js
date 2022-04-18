@@ -6,7 +6,9 @@ export const getInvoiceData = async (
 ) => {
   try {
     const listAll = filterKey === "filter" || filterValue === "" ? true : false;
-    const url = `https://invoice-storage.herokuapp.com/list${listAll ? "_all" : ""}`;
+    const url = `https://invoice-storage.herokuapp.com/list${
+      listAll ? "_all" : ""
+    }`;
     const res = await getAxios(url, {
       params: listAll ? {} : { filterKey, filterValue },
     });
@@ -48,9 +50,12 @@ export const updateExistedData = async () => {
 
 export const deleteExistedData = async (id) => {
   try {
-    const res = await deleteAxios("https://invoice-storage.herokuapp.com/delete/v2", {
-      params: { invoiceId: id },
-    });
+    const res = await deleteAxios(
+      "https://invoice-storage.herokuapp.com/delete/v2",
+      {
+        params: { invoiceId: id },
+      }
+    );
     return res;
   } catch (err) {
     console.log(err);
