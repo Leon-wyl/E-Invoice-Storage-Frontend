@@ -35,7 +35,7 @@ const Login = () => {
       }
       return Promise.reject(error);
     });
-		console.log(response.headers)
+    console.log(response.headers);
     navigate("/invoicepage");
   };
 

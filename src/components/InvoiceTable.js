@@ -4,7 +4,7 @@ import { Table, Space, Modal, Button, Input, Form, notification } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { deleteExistedData } from "../pages/api";
-import {sendInvoiceData } from "../pages/api";
+import { sendInvoiceData } from "../pages/api";
 
 const { confirm } = Modal;
 
@@ -74,21 +74,19 @@ const InvoiceTable = (props) => {
       onOk() {
         const sendInvoice = async (id) => {
           const data = await sendInvoiceData(id);
-          console.log(data)
-					if (data.status === 202) {
-						notification['success']({
-							message: 'Success',
-							description:
-								`Invoice (${id}) sent successfully.`,
-						});
-					} else {
-						notification['error']({
-							message: 'Error',
-							description:
-								`Invoice (${id}) not sent.`,
-						});
-					}
-				}
+          console.log(data);
+          if (data.status === 202) {
+            notification["success"]({
+              message: "Success",
+              description: `Invoice (${id}) sent successfully.`,
+            });
+          } else {
+            notification["error"]({
+              message: "Error",
+              description: `Invoice (${id}) not sent.`,
+            });
+          }
+        };
         sendInvoice(id);
       },
       onCancel() {

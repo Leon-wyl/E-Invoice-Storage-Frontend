@@ -92,13 +92,13 @@ const Register = () => {
             <Input.Password />
           </Form.Item>
 
-					<Form.Item
-          name="login"
-          valuePropName="login"
-          wrapperCol={{ offset: 8, span: 16 }}
-        	>
-          	<a onClick={onClickLogin}>Has an account? Go back to Login!</a>
-        	</Form.Item>
+          <Form.Item
+            name="login"
+            valuePropName="login"
+            wrapperCol={{ offset: 8, span: 16 }}
+          >
+            <a onClick={onClickLogin}>Has an account? Go back to Login!</a>
+          </Form.Item>
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button
