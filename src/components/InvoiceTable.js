@@ -74,6 +74,7 @@ const InvoiceTable = (props) => {
       onOk() {
         const sendInvoice = async (id) => {
           const data = await sendInvoiceData(id);
+          console.log(data)
 					if (data.status === 202) {
 						notification['success']({
 							message: 'Success',

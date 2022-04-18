@@ -19,7 +19,7 @@ const SearchBar = (props) => {
 
     const timeoutId = setTimeout(() => {
       fetchDataByFilter(filter, filterValue);
-    }, 500);
+    }, 250);
 
     // This returned function will invoke before the next call of of this useEffect hook
     return () => {
