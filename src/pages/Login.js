@@ -10,7 +10,7 @@ const Login = () => {
   const onFinish = async (values) => {
     const response = await axios({
       method: "post",
-      url: "https://invoice-storage.herokuapp.com/login",
+      url: "https://simplee-invoicing.herokuapp.com/login",
       headers: {},
       data: {
         username: values.username,

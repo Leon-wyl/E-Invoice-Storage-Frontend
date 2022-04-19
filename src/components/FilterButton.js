@@ -68,26 +68,6 @@ const FilterButton = (props) => {
   );
   return (
     <div>
-      {/* <Dropdown.Button onClick={handleButtonClick} overlay={menu}>
-				Dropdown
-			</Dropdown.Button>
-			<Dropdown.Button overlay={menu} placement="bottom" icon={<UserOutlined />}>
-				Dropdown
-			</Dropdown.Button>
-			<Dropdown.Button onClick={handleButtonClick} overlay={menu} disabled>
-				Dropdown
-			</Dropdown.Button>
-			<Dropdown.Button
-				overlay={menu}
-				buttonsRender={([leftButton, rightButton]) => [
-					<Tooltip title="tooltip" key="leftButton">
-						{leftButton}
-					</Tooltip>,
-					React.cloneElement(rightButton, { loading: true }),
-				]}
-			>
-				With Tooltip
-			</Dropdown.Button> */}
       <Dropdown overlay={menu}>
         <Button size="large">
           {filterPresentName} <DownOutlined />
