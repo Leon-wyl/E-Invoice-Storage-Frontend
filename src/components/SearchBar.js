@@ -5,8 +5,7 @@ import { getInvoiceData } from "../pages/api";
 import { Input, Space, DatePicker } from "antd";
 
 const SearchBar = (props) => {
-  const { filter, setInvoiceData, setNeedToLoad } = props;
-  const { Search } = Input;
+  const { filter, setInvoiceData } = props;
   const [filterValue, setFilterValue] = useState("");
 
   const fetchDataByFilter = async (filter, value) => {

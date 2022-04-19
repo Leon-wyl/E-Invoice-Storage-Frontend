@@ -10,7 +10,7 @@ const { confirm } = Modal;
 
 const downloadInvoice = (id) => () => {
   axios
-    .get("https://invoice-storage.herokuapp.com/download/v2", {
+    .get("https://simplee-invoicing.herokuapp.com/download/v2", {
       params: { invoiceId: id },
     })
     .then((res) => {
@@ -73,8 +73,7 @@ const InvoiceTable = (props) => {
       cancelText: "Cancel",
       onOk() {
         const sendInvoice = async (id) => {
-          const data = await sendInvoiceData(id);
-          console.log(data);
+          const data = await sendInvoiceData(id, emailRef.current);
           if (data.status === 202) {
             notification["success"]({
               message: "Success",

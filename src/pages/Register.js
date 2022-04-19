@@ -11,7 +11,7 @@ const Register = () => {
   const onFinish = async (values) => {
     const response = await axios({
       method: "post",
-      url: "https://invoice-storage.herokuapp.com/register",
+      url: "https://simplee-invoicing.herokuapp.com/register",
       headers: {},
       data: {
         name: values.name,
