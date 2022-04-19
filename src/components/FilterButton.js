@@ -1,12 +1,12 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { useState } from "react";
-import { Menu, Dropdown, Button, message, Space, Tooltip } from "antd";
+import { Menu, Dropdown, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 const FilterButton = (props) => {
   const [filterPresentName, setFilterPresentName] = useState("Filter");
-  const { filter, setFilter } = props;
+  const { filter, setFilter, setNeedToLoad } = props;
 
   const handleMenuClick = (e) => {
     if (e.key === "Invoice Id") {
@@ -25,6 +25,7 @@ const FilterButton = (props) => {
       setFilter("filter");
     }
     setFilterPresentName(e.key);
+		setNeedToLoad(true);
   };
 
   const menu = (
