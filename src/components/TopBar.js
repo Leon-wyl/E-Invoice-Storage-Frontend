@@ -7,20 +7,19 @@ import AddNewInvoiceButton from "./AddNewInvoiceButton";
 import { LogoutOutlined } from "@ant-design/icons";
 
 const TopBar = (props) => {
-  const { setNeedToLoad, setInvoiceData } = props;
+  const { setInvoiceData } = props;
   const [filter, setFilter] = useState("filter");
-	let navigate = useNavigate();
+	const navigate = useNavigate();
 	const logout = () => navigate("/");
 
   return (
     <Space wrap>
-      <FilterButton filter={filter} setFilter={setFilter} setNeedToLoad={setNeedToLoad} />
+      <FilterButton filter={filter} setFilter={setFilter} />
       <SearchBar
         filter={filter}
         setInvoiceData={setInvoiceData}
-        setNeedToLoad={setNeedToLoad}
       />
-      <AddNewInvoiceButton setNeedToLoad={setNeedToLoad} />
+      <AddNewInvoiceButton setInvoiceData={setInvoiceData} />
 	  <Button size="large" onClick={logout}><LogoutOutlined />Logout</Button>
     </Space>
   );

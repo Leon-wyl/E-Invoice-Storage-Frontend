@@ -6,31 +6,20 @@ import { Input, Space, DatePicker } from "antd";
 
 const SearchBar = (props) => {
   const { filter, setInvoiceData } = props;
-  const [filterValue, setFilterValue] = useState("");
-  const firstUpdate = useRef(true);
+  // 第一步：第一次加载: loadApiByFirstTime
+  // 已经在InvoicePage用useEffect完成
 
-  const fetchDataByFilter = async (filter, value) => {
-    const data = await getInvoiceData(filter, value);
-    setInvoiceData(data);
-  };
+  // 第二步：根据filterValue加载：loadApiByUserInput
+  // filterKey的更改不影响页面, filterValue更改的时候延时请求
+  // filterKey用一个useState保存状态，filterValue更改时在onchange函数call Api，延时0.25秒
 
-  const timeoutId = () =>
-    setTimeout(() => {
-      fetchDataByFilter(filter, filterValue);
+  const listenOnChange =  (filterValue) => {
+    // 用这个filterValue去call Api
+    setTimeout(async () => {
+      const data = await getInvoiceData(filter, filterValue);
+      setInvoiceData(data);
     }, 250);
-
-  useEffect(() => {
-    if (firstUpdate.current === false) {
-      timeoutId();
-    } else {
-      firstUpdate.current = false;
-    }
-
-    // This returned function will invoke before the next call of of this useEffect hook
-    return () => {
-      clearTimeout(timeoutId());
-    };
-  }, [filterValue]);
+  }
 
   return (
     <Space direction="vertical">
@@ -40,12 +29,12 @@ const SearchBar = (props) => {
           allowClear
           enterButton="Search"
           size="large"
-          onChange={(e) => setFilterValue(e.target.value)}
+          onChange={(e) => listenOnChange(e.target.value)}
         />
       )}
       {filter === "date" && (
         <DatePicker
-          onChange={(date, dateString) => setFilterValue(dateString)}
+          onChange={(date, dateString) => listenOnChange(dateString)}
         />
       )}
     </Space>

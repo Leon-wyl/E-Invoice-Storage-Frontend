@@ -6,7 +6,7 @@ import { DownOutlined } from "@ant-design/icons";
 
 const FilterButton = (props) => {
   const [filterPresentName, setFilterPresentName] = useState("Filter");
-  const { filter, setFilter, setNeedToLoad } = props;
+  const { filter, setFilter} = props;
 
   const handleMenuClick = (e) => {
     if (e.key === "Invoice Id") {
@@ -25,7 +25,6 @@ const FilterButton = (props) => {
       setFilter("filter");
     }
     setFilterPresentName(e.key);
-		setNeedToLoad(true);
   };
 
   const menu = (

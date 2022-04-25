@@ -8,25 +8,20 @@ import { getInvoiceData } from "./api";
 // https://invoice-storage.herokuapp.com
 
 const InvoicePage = () => {
-  const [needToLoad, setNeedToLoad] = useState(true);
   const [invoiceData, setInvoiceData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      if (needToLoad) {
-        const data = await getInvoiceData();
-        setInvoiceData(data);
-        setNeedToLoad(false);
-      }
+      setInvoiceData(await getInvoiceData());
     };
     fetchData();
-  }, [needToLoad]);
+  }, []);
   return (
     <div className={styles.bg}>
       <div className={styles.card}>
-        <TopBar setNeedToLoad={setNeedToLoad} setInvoiceData={setInvoiceData} />
+        <TopBar setInvoiceData={setInvoiceData} />
       </div>
       <Card>
-        {<InvoiceTable data={invoiceData} setNeedToLoad={setNeedToLoad} />}
+        <InvoiceTable data={invoiceData} setInvoiceData={setInvoiceData} />
       </Card>
     </div>
   );
